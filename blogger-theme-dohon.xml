@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta charset='utf-8'/>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<title><data:blog.pageTitle/></title>
+<b:include data='blog' name='all-head-content'/>
+<link href='https://fonts.googleapis.com' rel='preconnect'/>
+<link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+<link href='https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&amp;family=Noto+Serif+Bengali:wght@400;600;700;900&amp;display=swap' rel='stylesheet'/>
+<b:skin><![CDATA[
+/*
+  Shironamhin Dohon, custom Blogger theme.
+  Warm paper, ember accent, serif reading, three reading modes.
+*/
+:root {
+  --paper: #faf5ec;
+  --paper-soft: #f3ead9;
+  --card: #fffdf8;
+  --ink: #2b2118;
+  --ink-soft: #6f6152;
+  --line: #e7dbc4;
+  --ember: #c2410c;
+  --ember-deep: #9a3412;
+  --ember-soft: #fdeadd;
+  --gold: #d97706;
+  --shadow: 0 2px 12px rgba(43, 33, 24, 0.08);
+}
+html[data-theme="sepia"] {
+  --paper: #f4ecd8;
+  --paper-soft: #eadfc2;
+  --card: #fbf6e9;
+  --ink: #43331f;
+  --ink-soft: #7a6a52;
+  --line: #dccfae;
+  --ember: #b45309;
+  --ember-deep: #92400e;
+  --ember-soft: #f6e3c2;
+  --gold: #92400e;
+  --shadow: 0 2px 12px rgba(67, 51, 31, 0.10);
+}
+html[data-theme="dark"] {
+  --paper: #1c1917;
+  --paper-soft: #292524;
+  --card: #242120;
+  --ink: #e9e2d5;
+  --ink-soft: #a8a29a;
+  --line: #44403c;
+  --ember: #fb923c;
+  --ember-deep: #f97316;
+  --ember-soft: #3a2415;
+  --gold: #fbbf24;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.40);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Hind Siliguri', 'Noto Serif Bengali', sans-serif;
+  font-size: 18px;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+img, video, iframe { max-width: 100%; height: auto; }
+a { color: var(--ember); text-decoration: none; }
+a:hover { color: var(--ember-deep); text-decoration: underline; }
+h1, h2, h3, h4 { font-family: 'Noto Serif Bengali', serif; line-height: 1.4; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+.wrap-wide { max-width: 1020px; margin: 0 auto; padding: 0 20px; }
+main { padding-top: 36px; }
+
+/* Header */
+.site-header { border-bottom: 1px solid var(--line); background: var(--paper); }
+.topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 20px 0 14px; flex-wrap: wrap; }
+.brand { min-width: 0; }
+.wordmark { font-family: 'Noto Serif Bengali', serif; font-weight: 900; font-size: 36px; line-height: 1.15; margin: 0; }
+.wordmark a { color: var(--ink); }
+.wordmark a:hover { color: var(--ember); text-decoration: none; }
+.wordmark .flame { color: var(--ember); }
+.tagline { margin: 4px 0 0; color: var(--ink-soft); font-size: 15px; }
+.header-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding-top: 6px; }
+.search-form { display: flex; gap: 8px; }
+.search-form input[type='search'] {
+  font-family: inherit; font-size: 15px; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+  padding: 8px 14px; width: 180px; outline: none;
+}
+.search-form input[type='search']:focus { border-color: var(--ember); }
+.btn {
+  font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer;
+  background: var(--ember); color: #fff; border: 1px solid var(--ember);
+  padding: 8px 16px; border-radius: 999px; white-space: nowrap;
+}
+.btn:hover { background: var(--ember-deep); border-color: var(--ember-deep); color: #fff; text-decoration: none; }
+.btn:disabled { opacity: 0.6; cursor: default; }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { color: var(--ember); border-color: var(--ember); background: transparent; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 4px 22px; padding: 12px 0 14px; border-top: 1px solid var(--line); font-size: 16px; }
+.site-nav a { color: var(--ink); font-weight: 500; }
+.site-nav a:hover { color: var(--ember); text-decoration: none; }
+
+/* Hero */
+.hero { background: linear-gradient(180deg, var(--ember-soft) 0%, var(--paper) 100%); border-bottom: 1px solid var(--line); text-align: center; padding: 30px 0 26px; }
+.hero-art { max-width: 640px; width: 100%; height: auto; display: block; margin: 0 auto; }
+.hero-text { font-family: 'Noto Serif Bengali', serif; font-size: 21px; line-height: 1.6; color: var(--ink-soft); margin: 6px auto 0; max-width: 620px; }
+
+/* Start Here shelf */
+.start-here { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 22px 26px; margin: 30px auto; }
+.start-here h2 { margin: 0; font-size: 24px; }
+.start-here-intro { margin: 4px 0 0; color: var(--ink-soft); font-size: 16px; }
+.start-here ol { margin: 14px 0 0; padding-left: 24px; }
+.start-here li { margin: 8px 0; font-size: 17px; }
+.start-here li a { color: var(--ink); font-weight: 500; }
+.start-here li a:hover { color: var(--ember); }
+.sh-date { color: var(--ink-soft); font-size: 14px; margin-left: 6px; }
+
+/* Status messages for search and label pages */
+.status-msg { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 20px; margin: 28px auto; font-size: 17px; }
+
+/* Posts */
+.post { margin: 0 0 60px; }
+.post + .post { border-top: 1px solid var(--line); padding-top: 52px; }
+.post-title { font-size: 32px; font-weight: 700; margin: 0 0 10px; }
+.post-title a { color: var(--ink); }
+.post-title a:hover { color: var(--ember); text-decoration: none; }
+.post-featured .post-title { font-size: 42px; }
+.post-item .post-title { font-size: 40px; }
+.post-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; color: var(--ink-soft); font-size: 15px; margin-bottom: 18px; }
+.post-labels { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.post-labels a { background: var(--ember-soft); color: var(--ember-deep); padding: 2px 12px; border-radius: 999px; font-size: 14px; font-weight: 500; }
+.post-labels a:hover { text-decoration: none; background: var(--ember); color: #fff; }
+.post-body { font-family: 'Noto Serif Bengali', serif; font-size: 19px; line-height: 1.9; }
+.post-body p { margin: 0 0 1.1em; }
+.post-body h2 { font-size: 26px; margin: 1.4em 0 0.6em; }
+.post-body h3 { font-size: 22px; margin: 1.3em 0 0.5em; }
+.post-body blockquote { border-left: 4px solid var(--ember); margin: 1.5em 0; padding: 2px 0 2px 22px; font-size: 23px; line-height: 1.6; color: var(--ember-deep); }
+.post-body blockquote p { margin: 0; }
+.post-body ul, .post-body ol { margin: 0 0 1.1em; padding-left: 26px; }
+.post-body li { margin: 4px 0; }
+.post-body img { border-radius: 12px; }
+.post-body table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+.post-body td, .post-body th { border: 1px solid var(--line); padding: 8px 12px; }
+.post-body pre { background: var(--paper-soft); padding: 14px 18px; border-radius: 10px; overflow-x: auto; font-size: 15px; }
+.post-body hr { border: none; border-top: 1px solid var(--line); margin: 2em auto; width: 40%; }
+
+/* Reading progress bar */
+.progress-bar { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: var(--ember); z-index: 200; }
+
+/* Related reading */
+.related { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 26px; margin: 44px 0; }
+.related h3 { margin: 0; font-size: 22px; }
+.related-note { margin: 4px 0 0; color: var(--ink-soft); font-size: 15px; }
+.related ul { margin: 12px 0 0; padding-left: 22px; }
+.related li { margin: 8px 0; }
+.related li a { color: var(--ink); font-weight: 500; }
+.related li a:hover { color: var(--ember); }
+.related-loading { color: var(--ink-soft); }
+
+/* Newsletter */
+.newsletter { background: var(--ember-soft); border-radius: 16px; padding: 26px; margin: 44px 0; text-align: center; }
+.newsletter h3 { margin: 0; font-size: 24px; }
+.newsletter p { margin: 6px 0 0; color: var(--ink-soft); }
+.newsletter-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+.newsletter-form input[type='email'] { font-family: inherit; font-size: 16px; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; width: 260px; max-width: 100%; outline: none; }
+.newsletter-form input[type='email']:focus { border-color: var(--ember); }
+.newsletter-thanks { font-weight: 600; color: var(--ember-deep); }
+
+/* Pagination */
+.pager { display: flex; justify-content: space-between; gap: 12px; margin: 10px auto 70px; }
+.pager-spacer { flex: 1; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); background: var(--paper-soft); padding: 40px 0 48px; color: var(--ink-soft); }
+.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.footer-col h3 { margin: 0 0 10px; font-size: 18px; color: var(--ink); }
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+.footer-col li { margin: 6px 0; font-size: 16px; }
+.footer-col li a { color: var(--ink-soft); }
+.footer-col li a:hover { color: var(--ember); }
+.footer-col p { margin: 0; font-size: 16px; }
+.footer-bottom { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; text-align: center; }
+
+/* Responsive */
+@media (max-width: 720px) {
+  .wordmark { font-size: 29px; }
+  .post-title { font-size: 27px; }
+  .post-featured .post-title, .post-item .post-title { font-size: 32px; }
+  .post-body { font-size: 18px; }
+  .post-body blockquote { font-size: 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .search-form input[type='search'] { width: 140px; }
+  .hero-text { font-size: 18px; }
+}
+@media (max-width: 480px) {
+  .topbar { flex-direction: column; }
+  .header-controls { width: 100%; }
+  .search-form { flex: 1; }
+  .search-form input[type='search'] { flex: 1; width: auto; }
+}
+]]></b:skin>
+<script type='text/javascript'>
+//<![CDATA[
+(function () {
+  try {
+    var saved = localStorage.getItem('dohon-theme');
+    if (saved === 'sepia' || saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+  } catch (e) {}
+})();
+//]]>
+</script>
+</head>
+<body>
+<b:if cond='data:blog.pageType == "item"'>
+<div class='progress-bar' id='progress-bar'/>
+</b:if>
+<header class='site-header'>
+<div class='wrap-wide topbar'>
+<div class='brand'>
+<h1 class='wordmark'><a expr:href='data:blog.homepageUrl'>শিরোনামহীন <span class='flame'>দহন</span></a></h1>
+<p class='tagline'>Essays and stories from Bangladesh and beyond.</p>
+</div>
+<div class='header-controls'>
+<form action='/search' class='search-form' method='get' role='search'>
+<input aria-label='Search' name='q' placeholder='Search the blog' type='search'/>
+<button class='btn btn-ghost' type='submit'>Search</button>
+</form>
+<button class='btn' id='surprise-btn' type='button'>Surprise me</button>
+<button aria-label='Change reading mode' class='btn btn-ghost' id='mode-toggle' type='button'>Mode</button>
+</div>
+</div>
+<nav class='site-nav wrap-wide'>
+<a expr:href='data:blog.homepageUrl'>Home</a>
+<a href='/search/label/Bangladesh%20Politics'>Bangladesh Politics</a>
+<a href='/search/label/International%20News'>International News</a>
+<a href='/search/label/Economy'>Economy</a>
+<a href='/search/label/Politics'>Politics</a>
+<a href='/search/label/personal%20stories'>Personal Stories</a>
+</nav>
+</header>
+<b:if cond='data:blog.url == data:blog.homepageUrl'>
+<section class='hero'>
+<div class='wrap-wide'>
+<svg aria-label='Open book, flame, and river' class='hero-art' role='img' viewBox='0 0 800 260'>
+<title>Open book, flame, and river</title>
+<circle cx='400' cy='98' fill='#fdeadd' opacity='0.7' r='72'/>
+<circle cx='176' cy='66' fill='#d97706' opacity='0.45' r='5'/>
+<circle cx='624' cy='58' fill='#c2410c' opacity='0.4' r='4'/>
+<circle cx='660' cy='120' fill='#d97706' opacity='0.35' r='3'/>
+<circle cx='140' cy='128' fill='#c2410c' opacity='0.3' r='3'/>
+<path d='M400 38 C420 68 432 84 432 104 A32 32 0 1 1 368 104 C368 86 380 72 400 38 Z' fill='#ea580c'/>
+<path d='M400 80 C408 92 414 98 414 108 A14 14 0 1 1 386 108 C386 98 392 92 400 80 Z' fill='#fbbf24'/>
+<path d='M400 138 C360 122 312 120 272 134 L272 178 C312 164 360 166 400 182 C440 166 488 164 528 178 L528 134 C488 120 440 122 400 138 Z' fill='#fffdf8' stroke='#c2410c' stroke-width='2'/>
+<path d='M400 138 L400 182' stroke='#c2410c' stroke-width='2'/>
+<path d='M290 146 C318 138 350 138 382 146' fill='none' stroke='#e7dbc4' stroke-linecap='round' stroke-width='3'/>
+<path d='M290 160 C318 152 350 152 382 160' fill='none' stroke='#e7dbc4' stroke-linecap='round' stroke-width='3'/>
+<path d='M418 146 C450 138 482 138 510 146' fill='none' stroke='#e7dbc4' stroke-linecap='round' stroke-width='3'/>
+<path d='M418 160 C450 152 482 152 510 160' fill='none' stroke='#e7dbc4' stroke-linecap='round' stroke-width='3'/>
+<path d='M0 214 Q50 200 100 214 T200 214 T300 214 T400 214 T500 214 T600 214 T700 214 T800 214' fill='none' opacity='0.75' stroke='#4f8a8b' stroke-linecap='round' stroke-width='3'/>
+<path d='M0 232 Q50 218 100 232 T200 232 T300 232 T400 232 T500 232 T600 232 T700 232 T800 232' fill='none' opacity='0.45' stroke='#4f8a8b' stroke-linecap='round' stroke-width='3'/>
+<path d='M0 248 Q50 234 100 248 T200 248 T300 248 T400 248 T500 248 T600 248 T700 248 T800 248' fill='none' opacity='0.3' stroke='#4f8a8b' stroke-linecap='round' stroke-width='3'/>
+</svg>
+<p class='hero-text'>Slow writing on politics, economy, and life, one essay at a time.</p>
+</div>
+</section>
+<section class='start-here wrap'>
+<h2>Start Here</h2>
+<p class='start-here-intro'>Seven essays that set the tone of this blog.</p>
+<ol>
+<li><a href='https://shironamhindohon.blogspot.com/2026/09/blog-post.html'>নেশার দুনিয়া।</a><span class='sh-date'>22 Sep 2026</span></li>
+<li><a href='https://shironamhindohon.blogspot.com/2026/06/blog-post.html'>হাত কাটা রফিকের গল্প</a><span class='sh-date'>1 Jun 2026</span></li>
+<li><a href='https://shironamhindohon.blogspot.com/2025/04/blog-post.html'>ড. ইউনুস ও কনফ্লিক্ট অফ ইন্টারেস্ট: দেশের জন্য না নিজের জন্য?</a><span class='sh-date'>29 Apr 2025</span></li>
+<li><a href='https://shironamhindohon.blogspot.com/2024/08/governments-tolerance-shouldnt-be-seen.html'>Government's Tolerance Shouldn't Be Seen as Weakness</a><span class='sh-date'>4 Aug 2024</span></li>
+<li><a href='https://shironamhindohon.blogspot.com/2024/08/a-call-for-responsibility-and-respect-i.html'>A Call for Responsibility and Respect</a><span class='sh-date'>4 Aug 2024</span></li>
+<li><a href='https://shironamhindohon.blogspot.com/2024/08/blog-post.html'>কোটা আন্দোলন &gt; দলীয় সাপোর্ট</a><span class='sh-date'>1 Aug 2024</span></li>
+<li><a href='https://shironamhindohon.blogspot.com/2021/04/blog-post.html'>নদীভাঙ্গন</a><span class='sh-date'>14 Apr 2021</span></li>
+</ol>
+</section>
+</b:if>
+<main>
+<b:section class='main-section' id='main' showaddelement='yes'>
+<b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+<b:widget-settings>
+<b:widget-setting name='showDateHeader'>false</b:widget-setting>
+<b:widget-setting name='showShareButtons'>true</b:widget-setting>
+<b:widget-setting name='showCommentLink'>true</b:widget-setting>
+<b:widget-setting name='showAuthor'>false</b:widget-setting>
+<b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+<b:widget-setting name='timestampLabel'/>
+<b:widget-setting name='reactionsLabel'/>
+<b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+<b:widget-setting name='style.layout'>1x1</b:widget-setting>
+<b:widget-setting name='showLabels'>true</b:widget-setting>
+<b:widget-setting name='showLocation'>true</b:widget-setting>
+<b:widget-setting name='showTimestamp'>true</b:widget-setting>
+<b:widget-setting name='postsPerAd'>1</b:widget-setting>
+<b:widget-setting name='showBacklinks'>false</b:widget-setting>
+<b:widget-setting name='showInlineAds'>false</b:widget-setting>
+<b:widget-setting name='showReactions'>false</b:widget-setting>
+</b:widget-settings>
+<b:includable id='main' var='top'>
+<b:if cond='data:blog.searchQuery'>
+<div class='status-msg wrap'>Search results for “<data:blog.searchQuery/>”</div>
+</b:if>
+<b:if cond='data:blog.searchLabel'>
+<div class='status-msg wrap'>Posts filed under “<data:blog.searchLabel/>”</div>
+</b:if>
+<div class='wrap'>
+<b:loop values='data:posts' var='post'>
+<b:include data='post' name='post'/>
+</b:loop>
+</div>
+<b:if cond='data:blog.pageType == "index"'>
+<div class='wrap pager'>
+<b:if cond='data:newerPageUrl'>
+<a class='btn btn-ghost' expr:href='data:newerPageUrl'>← Newer posts</a>
+<b:else/>
+<span class='pager-spacer'/>
+</b:if>
+<b:if cond='data:olderPageUrl'>
+<a class='btn btn-ghost' expr:href='data:olderPageUrl'>Older posts →</a>
+</b:if>
+</div>
+</b:if>
+</b:includable>
+<b:includable id='post' var='post'>
+<article expr:class='data:blog.pageType == "item" ? "post post-item" : (data:post.isFirstPost ? "post post-featured" : "post")'>
+<header class='post-header'>
+<b:if cond='data:blog.pageType == "item"'>
+<h1 class='post-title'><data:post.title/></h1>
+<b:else/>
+<h2 class='post-title'>
+<a expr:href='data:post.url'><data:post.title/></a>
+</h2>
+</b:if>
+<div class='post-meta'>
+<span class='meta-date'>
+<b:if cond='data:post.dateHeader'><data:post.dateHeader/><b:else/><data:post.timestamp/></b:if>
+</span>
+<b:if cond='data:post.author'>
+<span class='meta-author'>by <data:post.author/></span>
+</b:if>
+<b:if cond='data:post.labels'>
+<span class='post-labels'>
+<b:loop values='data:post.labels' var='label'>
+<a expr:href='data:label.url' rel='tag'><data:label.name/></a>
+</b:loop>
+</span>
+</b:if>
+<b:if cond='data:post.allowComments'>
+<a class='meta-comments' expr:href='data:post.addCommentUrl'><data:post.numberOfComments/> comments</a>
+</b:if>
+</div>
+</header>
+<div class='post-body'>
+<data:post.body/>
+</div>
+<b:if cond='data:blog.pageType == "item"'>
+<div class='related-labels' style='display:none'>
+<b:loop values='data:post.labels' var='label'>
+<span expr:data-name='data:label.name'/>
+</b:loop>
+</div>
+<section class='related' id='related-box'>
+<h3>Couple with</h3>
+<p class='related-note'>More writing on the same subject.</p>
+<ul id='related-list'>
+<li class='related-loading'>Loading related reading...</li>
+</ul>
+</section>
+<section class='newsletter'>
+<h3>Never miss an essay</h3>
+<p>New writing, straight to your inbox.</p>
+<form action='#' class='newsletter-form' method='post'>
+<input name='email' placeholder='Your email address' required='required' type='email'/>
+<button class='btn' type='submit'>Subscribe</button>
+</form>
+<p class='newsletter-thanks' hidden='hidden'>Thank you. You are on the list.</p>
+</section>
+</b:if>
+</article>
+</b:includable>
+</b:widget>
+</b:section>
+</main>
+<footer class='site-footer'>
+<div class='wrap-wide footer-grid'>
+<div class='footer-col'>
+<h3>Archive</h3>
+<ul class='archive-list' id='archive-list'>
+<li>Loading archive...</li>
+</ul>
+</div>
+<div class='footer-col'>
+<h3>Pages</h3>
+<b:section class='footer-pages' id='footer-pages' showaddelement='no'>
+<b:widget id='PageList1' locked='false' title='Pages' type='PageList' version='2' visible='true'>
+<b:includable id='main'>
+<ul class='page-list'>
+<b:loop values='data:links' var='link'>
+<li><a expr:href='data:link.href'><data:link.title/></a></li>
+</b:loop>
+</ul>
+</b:includable>
+</b:widget>
+</b:section>
+</div>
+<div class='footer-col'>
+<h3>About</h3>
+<p>শিরোনামহীন দহন is a personal Bangla blog of essays and stories on politics, economy, and life.</p>
+</div>
+</div>
+<div class='wrap-wide footer-bottom'>
+<p>© <span id='copy-year'>2026</span> <data:blog.title/>. All rights reserved.</p>
+</div>
+</footer>
+<script type='text/javascript'>
+//<![CDATA[
+(function () {
+  'use strict';
+
+  /* Reading mode toggle: light, sepia, dark */
+  var root = document.documentElement;
+  var toggle = document.getElementById('mode-toggle');
+  var modes = ['light', 'sepia', 'dark'];
+  var modeNames = { light: 'Light', sepia: 'Sepia', dark: 'Dark' };
+  function currentMode() {
+    return root.getAttribute('data-theme') || 'light';
+  }
+  function setMode(mode) {
+    if (mode === 'light') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', mode);
+    }
+    try { localStorage.setItem('dohon-theme', mode); } catch (e) {}
+    if (toggle) { toggle.textContent = 'Mode: ' + modeNames[mode]; }
+  }
+  if (toggle) {
+    setMode(currentMode());
+    toggle.addEventListener('click', function () {
+      var next = modes[(modes.indexOf(currentMode()) + 1) % modes.length];
+      setMode(next);
+    });
+  }
+
+  /* Reading progress bar */
+  var bar = document.getElementById('progress-bar');
+  if (bar) {
+    var onScroll = function () {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+      bar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* Surprise me: jump to a random post */
+  var surprise = document.getElementById('surprise-btn');
+  if (surprise) {
+    surprise.addEventListener('click', function () {
+      surprise.disabled = true;
+      surprise.textContent = 'Finding one...';
+      fetch('/feeds/posts/default?alt=json&max-results=150')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var entries = (data.feed && data.feed.entry) || [];
+          if (!entries.length) { throw new Error('empty'); }
+          var entry = entries[Math.floor(Math.random() * entries.length)];
+          var link = null;
+          (entry.link || []).forEach(function (l) {
+            if (l.rel === 'alternate') { link = l.href; }
+          });
+          if (link) { window.location.href = link; }
+          else { throw new Error('nolink'); }
+        })
+        .catch(function () {
+          surprise.disabled = false;
+          surprise.textContent = 'Surprise me';
+        });
+    });
+  }
+
+  /* Related reading by shared label */
+  var relatedList = document.getElementById('related-list');
+  if (relatedList) {
+    var labelEl = document.querySelector('.related-labels span');
+    var label = labelEl ? labelEl.getAttribute('data-name') : null;
+    var currentUrl = window.location.href.split('#')[0].split('?')[0];
+    var feedUrl = label
+      ? '/feeds/posts/default/-/' + encodeURIComponent(label) + '?alt=json&max-results=6'
+      : '/feeds/posts/default?alt=json&max-results=6';
+    fetch(feedUrl)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var entries = (data.feed && data.feed.entry) || [];
+        var count = 0;
+        relatedList.innerHTML = '';
+        entries.forEach(function (entry) {
+          if (count >= 3) { return; }
+          var link = null;
+          (entry.link || []).forEach(function (l) {
+            if (l.rel === 'alternate') { link = l.href; }
+          });
+          if (!link) { return; }
+          if (link.split('#')[0].split('?')[0] === currentUrl) { return; }
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = link;
+          a.textContent = (entry.title && entry.title.$t) || 'Untitled';
+          li.appendChild(a);
+          relatedList.appendChild(li);
+          count += 1;
+        });
+        if (!count) {
+          relatedList.innerHTML = '<li>No related reading yet.</li>';
+        }
+      })
+      .catch(function () {
+        relatedList.innerHTML = '<li>Related reading is unavailable right now.</li>';
+      });
+  }
+
+  /* Dated archive, grouped by month */
+  var archiveList = document.getElementById('archive-list');
+  if (archiveList) {
+    fetch('/feeds/posts/default?alt=json&max-results=500')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var groups = {};
+        var order = [];
+        ((data.feed && data.feed.entry) || []).forEach(function (entry) {
+          var pub = (entry.published && entry.published.$t) || '';
+          var year = pub.slice(0, 4);
+          var month = pub.slice(5, 7);
+          if (!year || !month) { return; }
+          var key = year + '/' + month;
+          if (!groups[key]) {
+            groups[key] = { count: 0, year: year, month: month };
+            order.push(key);
+          }
+          groups[key].count += 1;
+        });
+        var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        archiveList.innerHTML = '';
+        order.sort().reverse().forEach(function (key) {
+          var g = groups[key];
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = '/' + g.year + '/' + g.month + '/';
+          a.textContent = monthNames[parseInt(g.month, 10) - 1] + ' ' + g.year + ' (' + g.count + ')';
+          li.appendChild(a);
+          archiveList.appendChild(li);
+        });
+        if (!order.length) {
+          archiveList.innerHTML = '<li>No posts yet.</li>';
+        }
+      })
+      .catch(function () {
+        archiveList.innerHTML = '<li>Archive unavailable.</li>';
+      });
+  }
+
+  /* Newsletter boxes: local thank-you, no backend */
+  var forms = document.querySelectorAll('.newsletter-form');
+  forms.forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var box = form.closest('.newsletter');
+      form.style.display = 'none';
+      if (box) {
+        var thanks = box.querySelector('.newsletter-thanks');
+        if (thanks) { thanks.hidden = false; }
+      }
+    });
+  });
+
+  /* Footer year */
+  var yearEl = document.getElementById('copy-year');
+  if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+})();
+//]]>
+</script>
+</body>
+</html>
