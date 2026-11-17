@@ -794,7 +794,9 @@ var BN_MONTHS = ["জানুয়ারি","ফেব্রুয়ার�
 var EN_MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 var POSTS = [];
 var START_HERE = [];
-var state = {cat:"all", q:""};
+var state = {cat:"stories", q:""};
+/* Our own story writing: personal stories plus unlabelled essays. News (politics, international, economy) shows only under its menu button. */
+function isStory(p){ return p.cat === "stories" || p.cat === "other"; }
 
 function el(id){return document.getElementById(id);}
 function byId(id){for(var i=0;i<POSTS.length;i++){if(POSTS[i].id===id)return POSTS[i];}return null;}
@@ -895,7 +897,7 @@ function relatedIds(p){
 
 function renderSubjects(){
   var bar = el("subjectBar"); bar.innerHTML = "";
-  Object.keys(CATS).forEach(function(k){
+  ["stories","politics","international","economy"].forEach(function(k){
     var b = document.createElement("button");
     b.type = "button"; b.textContent = CATS[k].bn;
     b.setAttribute("aria-pressed", state.cat===k ? "true":"false");
@@ -904,7 +906,7 @@ function renderSubjects(){
   });
 }
 function matches(p){
-  var okCat = state.cat==="all" || p.cat===state.cat;
+  var okCat = state.cat==="stories" ? isStory(p) : p.cat===state.cat;
   if(!okCat) return false;
   if(!state.q) return true;
   var c = CATS[p.cat] || CATS.all;
@@ -914,7 +916,8 @@ function matches(p){
 function metaLine(p){ return p.dateBn + " · " + p.date + " · " + p.mins + " মিনিটে পড়ুন"; }
 
 function renderFeatured(){
-  var p = POSTS[0];
+  var sp = POSTS.filter(isStory);
+  var p = sp.length ? sp[0] : POSTS[0];
   if(!p){ el("featuredSec").style.display = "none"; return; }
   el("featuredCard").innerHTML =
     '<div class="kicker">' + catLabel(p) + '</div>' +
@@ -957,7 +960,8 @@ function renderFeed(){
 }
 function renderArchive(){
   var ul = el("archiveList"); ul.innerHTML = "";
-  POSTS.forEach(function(p){
+  var listed = POSTS.filter(isStory);
+  listed.forEach(function(p){
     var li = document.createElement("li");
     li.innerHTML = '<span class="d">' + p.date + '</span>';
     var b = document.createElement("button");
@@ -968,8 +972,8 @@ function renderArchive(){
     li.appendChild(c);
     ul.appendChild(li);
   });
-  var since = POSTS.length ? POSTS[POSTS.length-1].date : "";
-  el("archiveNote").textContent = "Page 1 of 1 · " + POSTS.length + " published posts" + (since ? " · since " + since : "");
+  var since = listed.length ? listed[listed.length-1].date : "";
+  el("archiveNote").textContent = "Page 1 of 1 · " + listed.length + " published posts" + (since ? " · since " + since : "");
 }
 function bindOpeners(root){
   var btns = root.querySelectorAll("[data-open]");
@@ -1058,9 +1062,10 @@ function finish(){
   POSTS.forEach(function(p){ used[p.cat] = true; });
   if(used.other) CATS.other = {bn:"অন্যান্য", en:"Other"};
   var tagged = POSTS.filter(function(p){
-    return p.labels.some(function(l){ return START_ALIASES.indexOf(l.toLowerCase().trim()) !== -1; });
+    return isStory(p) && p.labels.some(function(l){ return START_ALIASES.indexOf(l.toLowerCase().trim()) !== -1; });
   }).slice(0,3);
-  var pick = tagged.length ? tagged : POSTS.slice(1,4);
+  var storyPosts = POSTS.filter(isStory);
+  var pick = tagged.length ? tagged : storyPosts.slice(0,3);
   if(!pick.length) pick = POSTS.slice(0,3);
   START_HERE = pick.map(function(p){ return p.id; });
   renderSubjects(); renderFeatured(); renderShelf(); renderFeed(); renderArchive(); bindOpeners(document);

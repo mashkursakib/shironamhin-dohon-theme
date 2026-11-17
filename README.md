@@ -6,7 +6,7 @@ Posts are loaded from the Blogger JSON feed by JavaScript, not rendered through 
 
 ## Files
 
-- `blogger-theme-dohon.xml`: the live theme. This is Mashkur's own version of the theme (downloaded from Blogger 2026-11-17), with the homepage feed changed 2026-11-17 from full posts under a "সব লেখা" heading to a dropdown list: one collapsed row per post (title, date, category, reading time), expanding to a short summary and a read button.
+- `blogger-theme-dohon.xml`: the live theme. This is Mashkur's own version of the theme (downloaded from Blogger 2026-11-17), with the homepage feed changed 2026-11-17 from full posts under a "সব লেখা" heading to a dropdown list: one collapsed row per post (title, date, category, reading time), expanding to a short summary and a read button. The homepage (shelf, featured post, list, archive) shows only our own story writing: personal stories plus unlabelled essays. News posts (Bangladesh Politics, International News, Economy) do not appear on the homepage; they show only when their button in the subject menu bar is picked.
 - `theme-backup-2026-11-17.xml`: the live theme exactly as downloaded from Blogger 2026-11-17, before the dropdown change. Restore this to undo the dropdown change.
 - `theme-backup-2026-11-15.xml`: the previous theme, backed up before the 2026-11-15 switch.
 
